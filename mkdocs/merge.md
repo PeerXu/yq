@@ -135,6 +135,36 @@ Note that the 'b' array has concatenated the values from the second data file. A
 
 Append cannot be used with overwrite, if both flags are given then append is ignored.
 
+### Deep copy slice elements
+Given a data1.yaml file of:
+```yaml
+inter:
+- a: 1
+  b: 2
+```
+
+and data2.yaml file of:
+```yaml
+inter:
+- b: 3
+  c: 4
+```
+
+then
+```bash
+yq m --deepcopy data1.yaml data2.yaml
+```
+
+will output:
+```yaml
+inter:
+- a: 1
+  b: 3
+  c: 4
+```
+
+Note that deepcopy flag is force enable overwrite flag.
+
 ### Multiple Documents - merge into single document
 Currently yq only has multi-document support for the _first_ document being merged into. The remaining yaml files will have their first document selected.
 

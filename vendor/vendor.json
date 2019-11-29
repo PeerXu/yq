@@ -3,6 +3,12 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "8/NRzquaEfdCyZR34vlhgxUVvtE=",
+			"path": "github.com/PeerXu/mergo",
+			"revision": "22ac9f7d5e7453565ac90b20ccb435ee520b3942",
+			"revisionTime": "2019-10-12T02:35:47Z"
+		},
+		{
 			"checksumSHA1": "40vJyUB4ezQSn/NSadsKEOrudMc=",
 			"path": "github.com/inconshreveable/mousetrap",
 			"revision": "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75",
@@ -19,12 +25,6 @@
 			"path": "github.com/spf13/pflag",
 			"revision": "3ebe029320b2676d667ae88da602a5f854788a8a",
 			"revisionTime": "2018-06-01T13:25:42Z"
-		},
-		{
-			"checksumSHA1": "RwlkCZz8VFXAE4aHQQOSC0hLu5k=",
-			"path": "gopkg.in/imdario/mergo.v0",
-			"revision": "9316a62528ac99aaecb4e47eadd6dc8aa6533d58",
-			"revisionTime": "2018-06-08T14:01:56Z"
 		},
 		{
 			"checksumSHA1": "7wtGubs4v7+RZovtlmyT9KwA/gE=",
@@ -45,5 +45,5 @@
 			"revisionTime": "2018-04-27T13:45:50Z"
 		}
 	],
-	"rootPath": "github.com/mikefarah/yq"
+	"rootPath": "github.com/PeerXu/yq"
 }

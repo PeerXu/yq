@@ -1264,3 +1264,17 @@ b:
 `
 	assertResult(t, expectedOutput, result.Output)
 }
+
+func TestMergeDeepcopyCmd(t *testing.T) {
+	cmd := getRootCommand()
+	result := runCmd(cmd, "merge --deepcopy examples/slice1.yaml examples/slice2.yaml")
+	if result.Error != nil {
+		t.Error(result.Error)
+	}
+	expectedOutput := `inter:
+- a: 1
+  b: 3
+  c: 4
+`
+	assertResult(t, expectedOutput, result.Output)
+}
