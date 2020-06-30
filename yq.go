@@ -21,6 +21,7 @@ var trimOutput = true
 var writeInplace = false
 var writeScript = ""
 var outputToJSON = false
+var printLength = false
 var overwriteFlag = false
 var allowEmptyFlag = false
 var appendFlag = false
@@ -91,7 +92,7 @@ func createReadCmd() *cobra.Command {
 	var cmdRead = &cobra.Command{
 		Use:     "read [yaml_file] [path]",
 		Aliases: []string{"r"},
-		Short:   "yq r [--doc/-d index] sample.yaml a.b.c",
+		Short:   "yq r [--doc/-d index] [--length/-l] sample.yaml a.b.c",
 		Example: `
 yq read things.yaml a.b.c
 yq r - a.b.c (reads from stdin)
@@ -105,6 +106,7 @@ yq r -- things.yaml --key-starting-with-dashes
 	}
 	cmdRead.PersistentFlags().StringVarP(&docIndex, "doc", "d", "0", "process document index number (0 based, * for all documents)")
 	cmdRead.PersistentFlags().BoolVarP(&outputToJSON, "tojson", "j", false, "output as json")
+	cmdRead.PersistentFlags().BoolVarP(&printLength, "length", "l", false, "print length of results")
 	return cmdRead
 }
 
@@ -292,6 +294,22 @@ func readProperty(cmd *cobra.Command, args []string) error {
 		dataBucket = mappedDocs[0]
 	} else {
 		dataBucket = mappedDocs
+	}
+
+	if printLength {
+		val := reflect.ValueOf(dataBucket)
+		switch val.Kind() {
+		case reflect.Array:
+			fallthrough
+		case reflect.Map:
+			fallthrough
+		case reflect.Slice:
+			fallthrough
+		case reflect.String:
+			cmd.Println(val.Len())
+		}
+
+		return nil
 	}
 
 	dataStr, err := toString(dataBucket)
